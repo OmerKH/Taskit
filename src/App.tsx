@@ -4,13 +4,22 @@ import InputElement from "./components/InputElement/InputElement";
 import { Task } from "./model";
 
 const App: React.FC = () => {
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState<string>("");
   const [taskList, setTaskList] = useState<Task[]>([]);
+
+  const handleAdd = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (task) {
+      setTaskList([...taskList, { id: Date.now(), task, isDone: false }]);
+      setTask("");
+    }
+  };
 
   return (
     <div className="App">
       <h1 className="title">Taskit</h1>
-      <InputElement task={task} setTask={setTask} />
+      <InputElement task={task} setTask={setTask} handleAdd={handleAdd} />
     </div>
   );
 };

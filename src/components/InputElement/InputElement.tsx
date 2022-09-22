@@ -4,11 +4,12 @@ import "./InputElement.css";
 interface Props {
   task: string;
   setTask: React.Dispatch<React.SetStateAction<string>>;
+  handleAdd: (e: React.FormEvent) => void;
 }
 
-const InputElement: React.FC<Props> = ({ task, setTask }) => {
+const InputElement: React.FC<Props> = ({ task, setTask, handleAdd }) => {
   return (
-    <form className="input-group">
+    <form className="input-group" onSubmit={handleAdd}>
       <input
         className="input_el"
         value={task}
