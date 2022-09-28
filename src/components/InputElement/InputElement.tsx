@@ -10,6 +10,7 @@ interface Props {
 
 const InputElement: React.FC<Props> = ({ task, setTask, handleAdd }) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
   return (
     <form
       className="input-group"
