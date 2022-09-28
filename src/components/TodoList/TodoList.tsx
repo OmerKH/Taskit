@@ -1,5 +1,6 @@
 import React from "react";
 import { Task } from "../../model";
+import TaskCard from "../TaskCard/TaskCard";
 import "./TodoList.css";
 
 interface Props {
@@ -10,7 +11,12 @@ const TodoList: React.FC<Props> = ({ taskList, setTaskList }: Props) => {
   return (
     <div className="task_list">
       {taskList.map((task) => (
-        <li>{task.task}</li>
+        <TaskCard
+          key={task.id}
+          task={task}
+          taskList={taskList}
+          setTaskList={setTaskList}
+        />
       ))}
     </div>
   );
