@@ -19,6 +19,10 @@ const TaskCard: React.FC<Props> = ({ task, taskList, setTaskList }) => {
     );
   };
 
+  const handleDelete = (id: number) => {
+    setTaskList(taskList.filter((task) => task.id !== id));
+  };
+
   return (
     <div className="task-card">
       {task.isDone ? (
@@ -31,7 +35,7 @@ const TaskCard: React.FC<Props> = ({ task, taskList, setTaskList }) => {
         <span className="icon">
           <AiFillEdit />
         </span>
-        <span className="icon">
+        <span className="icon" onClick={() => handleDelete(task.id)}>
           <AiOutlineDelete />
         </span>
         <span className="icon" onClick={() => handleDone(task.id)}>
