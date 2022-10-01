@@ -1,5 +1,8 @@
 import React from "react";
 import { Task } from "../../model";
+import { AiFillEdit, AiOutlineDelete } from "react-icons/ai";
+import { MdDone } from "react-icons/md";
+import "./TaskCard.css";
 
 interface Props {
   task: Task;
@@ -8,9 +11,33 @@ interface Props {
 }
 
 const TaskCard: React.FC<Props> = ({ task, taskList, setTaskList }) => {
+  const handleDone = (id: number) => {
+    setTaskList(
+      taskList.map((task) =>
+        task.id === id ? { ...task, isDone: !task.isDone } : task
+      )
+    );
+  };
+
   return (
     <div className="task-card">
-      <span className="task-text">{task.task}</span>
+      {task.isDone ? (
+        <s className="task-text">{task.task}</s>
+      ) : (
+        <span className="task-text">{task.task}</span>
+      )}
+
+      <div>
+        <span className="icon">
+          <AiFillEdit />
+        </span>
+        <span className="icon">
+          <AiOutlineDelete />
+        </span>
+        <span className="icon" onClick={() => handleDone(task.id)}>
+          <MdDone />
+        </span>
+      </div>
     </div>
   );
 };

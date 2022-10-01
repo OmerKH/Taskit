@@ -1,0 +1,40 @@
+.task-card {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 15px;
+  background: rgb(220, 192, 11);
+}
+
+.task-text {
+  flex: 1;
+  padding: 5px;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.icon {
+  margin-left: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .task-card {
+    width: 40%;
+  }
+}
+
+@media (max-width: 700px) {
+  .input-group {
+    width: 95%;
+  }
+  .task_list {
+    width: 95%;
+  }
+  .task-card {
+    width: 100%;
+  }
+}
