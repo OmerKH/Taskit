@@ -25,7 +25,7 @@ const InputElement: React.FC<Props> = ({ task, setTask, handleAdd }) => {
         type="text"
         placeholder="Task.."
         onChange={(e) => setTask(e.target.value)}
-        // onBlur={(e) => setTask(e.target.value)}
+        ref={inputRef}
       />
 
       <button className="save_btn">Save</button>

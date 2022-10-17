@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Task } from "../../model";
 import { AiFillEdit, AiOutlineDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
@@ -30,18 +30,24 @@ const TaskCard: React.FC<Props> = ({ task, taskList, setTaskList }) => {
     e.preventDefault();
 
     setTaskList(
-      taskList.map((todo) =>
-        todo.id === id ? { ...todo, todo: taskEdit } : todo
+      taskList.map((task) =>
+        task.id === id ? { ...task, task: taskEdit } : task
       )
     );
     setEdit(false);
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [edit]);
   return (
     <form className="task-card" onSubmit={(e) => handleEdit(e, task.id)}>
       {edit ? (
         <input
-          className="task-test"
+          ref={inputRef}
+          className="input-task-text"
           value={taskEdit}
           onChange={(e) => setTaskEdit(e.target.value)}
         />
@@ -54,7 +60,11 @@ const TaskCard: React.FC<Props> = ({ task, taskList, setTaskList }) => {
       <div>
         <span
           className="icon"
-          onClick={() => (!edit && !task.isDone ? setEdit(!edit) : edit)}
+          onClick={() => {
+            if (!edit && !task.isDone) {
+              setEdit(!edit);
+            }
+          }}
         >
           <AiFillEdit />
         </span>
